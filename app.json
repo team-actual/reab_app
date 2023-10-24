@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "reab_app",
+    "slug": "reab_app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/reab-icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/reability-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/reab-adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.reabcenter.reab_app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a4dd11b2-d0fa-40d6-a257-f3ac51e97c37"
+      }
+    }
+  }
+}
