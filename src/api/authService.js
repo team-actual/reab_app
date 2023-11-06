@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const { BASE_URL } = Constants.manifest.extra;
+const BASE_URL = 'http://127.0.0.1:8000/api';
 
 const authService = {
   handleLogin: async (cpf, password) => {
