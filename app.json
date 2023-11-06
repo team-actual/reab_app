@@ -30,7 +30,9 @@
     "extra": {
       "eas": {
         "projectId": "a4dd11b2-d0fa-40d6-a257-f3ac51e97c37"
-      }
+      },
+      "API_KEY": "",
+      "BASE_API_URL": "http://127.0.0.1:8000/api"
     }
   }
 }

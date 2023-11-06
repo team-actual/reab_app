@@ -21,6 +21,23 @@ import RecoveryPassword from './pages/Auth/RecoveryPassword';
 import RecoveryPasswordSuccess from './pages/Auth/RecoveryPasswordSuccess';
 import RegisterSlide1 from './pages/Auth/RegisterSlide1';
 import RegisterSlide2 from './pages/Auth/RegisterSlide2';
+import { useContext } from 'react';
+import { AuthContext } from './contexts/AuthContext';
+import { useNavigation } from '@react-navigation/native';
+
+function ProtectedScreen(component) {
+  const { user } = useContext(AuthContext);
+  const navigation = useNavigation()
+
+  if (user) {
+    return component;
+  } else {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login' }],
+    });
+  }
+}
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -48,7 +65,7 @@ function MainNavigation() {
     >
       <Tabs.Screen
         name="Dashboard"
-        component={Dashboard}
+        component={<ProtectedScreen component={Dashboard}/>}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => {
@@ -63,7 +80,7 @@ function MainNavigation() {
 
       <Tabs.Screen
         name="Sessões"
-        component={Sessions}
+        component={<ProtectedScreen component={Sessions}/>}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => {
@@ -86,7 +103,7 @@ function MainNavigation() {
 
       <Tabs.Screen
         name="Profile"
-        component={Profile}
+        component={<ProtectedScreen component={Profile}/>}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size, focused }) => {

@@ -5,6 +5,7 @@ import { PrimaryButton } from '../../../components/Buttons';
 import { ReabPasswordInput, ReabTextInput } from '../../../components/Inputs';
 import { useState } from 'react';
 import { cpfMask } from '../../../helpers/mask';
+import authService from '../../../api/authService';
 
 export default function Login({ navigation }) {
   const [formData, setFormData] = useState({
@@ -14,12 +15,11 @@ export default function Login({ navigation }) {
     passwordError: '',
   });
 
-  function handleSignIn() {
+  handleSignIn = async () => {
     navigation.reset({
       index: 0,
       routes: [{ name: 'MainNavigation' }],
     });
-    console.log('login');
   }
 
   return (
