@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useState } from 'react';
 import {setStorageItemAsync} from '../storage/useStorage';
+import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 
 export const AuthContext = createContext();
@@ -12,21 +13,25 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
   const signIn = async (email, password) => {
-    const response = await axios.post(`${BASE_URL}/users/login`, {
-      email: email,
-      password: password,
-    }, {
-      headers: {
-        'Accept': 'application/json'
+    try {
+      const response = await axios.post(`${BASE_URL}/users/login`, {
+        email: email,
+        password: password,
+      }, {
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+  
+      if (response.status == 200) {
+        setUser({ email });
+        setToken(response.data.token);
+  
+        setStorageItemAsync('token', response.data.token);
+        setStorageItemAsync('user', {'email': email});
       }
-    });
-
-    if (response.status == 200) {
-      setUser({ email });
-      setToken(response.data.token);
-
-      setStorageItemAsync('token', response.data.token);
-      setStorageItemAsync('user', {'email': email});
+    } catch (e) {
+      console.error(e);
     }
   };
 
